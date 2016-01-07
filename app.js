@@ -14,6 +14,12 @@ $(document).ready(function() {
             var email = event.fields[0].value;
             var password = event.fields[1].value;
 
+            // disable button
+            $('#sign-in-button').attr('disabled', 'disabled');
+
+            // show progress indicator
+            $('div.sign-in-button-holder i').removeClass('hidden');
+
             fetch(API_URL+'signin', {
                 method: 'post',
                 headers: {
@@ -29,6 +35,11 @@ $(document).ready(function() {
             .then(function(response) {
                 return response.json();
             }).then(function(responseData) {
+                // enabled sign in button
+                $('#sign-in-button').removeAttr('disabled');
+
+                // hide progress indicator
+                $('div.sign-in-button-holder i').addClass('hidden');
                 console.log(responseData);
             }).catch(function(error) {
                 console.log(error);
