@@ -1,4 +1,4 @@
-div.form-container {
+div.app-container, div.loading-container {
     height: 100%;
     height: 100vh;
     display: flex;
@@ -100,6 +100,17 @@ div.sign-in-button-holder {
     position: absolute;
     top: 10px;
     left: 46%;
+}
+
+#loading-indicator-container {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loading-indicator {
+    color: black;
+
 }
 
 #stage-two-header {
