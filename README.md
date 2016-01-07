@@ -5,4 +5,7 @@ BambaPOS API Client
 
 Put it on a local server if you have preferences.
 
-If you like: `npm install -g live-server`
+If you have Node.js installed: 
+
+`$ npm install -g live-server`
+`$ live-server`
