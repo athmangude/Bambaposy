@@ -1,5 +1,11 @@
 $(document).ready(function() {
     var API_URL = 'http://private-anon-f6d541990-bambapos.apiary-mock.com/';
+    var BASE_URL = window.location.protocol+"//"+window.location.host;
+    setTimeout(function () {
+        $('div.loading-container').addClass('fadeOutUpBig hidden ');
+        $('div.app-container').removeClass('hidden').addClass('fadeIn');
+    }, 2000);
+
     $('form input, form select')
         .on('focus', function() {
             $(this).siblings('small').removeClass('hidden');
@@ -106,7 +112,7 @@ $(document).ready(function() {
                     }
 
                     // disable button
-                    $('#sign-in-button').attr('disabled', 'disabled');
+                    $('#create-store-stage-two-button').attr('disabled', 'disabled');
 
                     // show progress indicator
                     $('div.sign-in-button-holder i').removeClass('hidden');
@@ -123,7 +129,7 @@ $(document).ready(function() {
                         return response.json();
                     }).then(function(responseData) {
                         // enabled sign in button
-                        $('#sign-in-button').removeAttr('disabled');
+                        $('#create-store-stage-two-button').removeAttr('disabled');
 
                         // hide progress indicator
                         $('div.sign-in-button-holder i').addClass('hidden');
@@ -135,6 +141,10 @@ $(document).ready(function() {
                                 return console.log('An error occured when setting the login state');
                             }
                         });
+
+                        var redirectUrl = BASE_URL+'/index.html';
+                        console.log('redirecting to ', redirectUrl, ' ...');
+                        window.location.assign(redirectUrl);
                     }).catch(function(error) {
                         console.log('An error occured', error);
                     });
