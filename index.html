@@ -15,12 +15,114 @@
             </div>
         </div>
 
-        <div class="container app-container hidden animated">
-            <!-- col-md-6 sm-6 col-xs-10 col-md-offset-3 col-sm-offset-3 col-xs-offset-1 -->
-            <div class="row col-lg-6 col-md-8 col-sm-10 col-xs-12 form-holder">
-                <h2>Index page</h2>
+        <div class="container main-container hidden animated">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">
+                                <img alt="Brand" src="/images/bambapos_logo.png" class="nav-logo">
+                            </a>
+                        </div>
+                        <button type="button" name="add-supplier" class="btn" data-toggle="modal" data-target="#add-supplier-modal"><i class="fa fa-plus"></i></button>
+                    </div>
+            </nav>
+            <div class="row form-holder">
+                <div class="col-lg-6 col-lg-offset-3 col col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+                    <table class="table table-bordered">
+                        <caption>SUPPLIERS</caption>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                                <td>@mdo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+
+        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="add-supplier-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="gridSystemModalLabel">Add Supplier</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row form-holder">
+                            <div class="">
+
+                            </div>
+                            <form name="add-supplier" data-parsley-validate="">
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <label for="first_name" class="light">First name <span id="first-name-validation-message"></span></label>
+                                                <input type="text" class="form-control" id="first-name" placeholder="" value="Athman" data-parsley-trigger="change" data-parsley-required="" data-parsley-required-message="first name is required" data-parsley-pattern="^[a-zA-Z-]*$" data-parsley-pattern-message="invalid name" data-parsley-errors-container="#first-name-validation-message" data-parsley-class-handler="#first-name-validation-message">
+                                                <small class="text-muted light hidden">Provide their first name. Letters and hyphens only</small>
+                                        </div>
+
+                                        <div class="col-lg-6  col-md-6 col-sm-6 col-xs-6">
+                                            <label for="surname" class="light">Surname <span id="surname-validation-message"></span></label>
+                                            <input type="text" class="form-control" id="surname" placeholder="" value="AGStore" data-parsley-trigger="change" data-parsley-required="" data-parsley-required-message="surname is required" data-parsley-pattern="^[a-zA-Z-]*$" data-parsley-pattern-message="invalid surname" data-parsley-errors-container="#surname-validation-message" data-parsley-class-handler="#surname-validation-message">
+                                            <small class="text-muted light hidden">Provide their surname. Letters hyphens only</small>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <label for="email" class="light">Email <span id="email-validation-message"></span></label>
+                                    <input type="email" class="form-control" id="email" placeholder="" value="johnsam@gmail.com" data-parsley-trigger="change" data-parsley-required="" data-parsley-required-message="email is required" data-parsley-type="email" data-parsley-type-message="should be a valid email" data-parsley-errors-container="#email-validation-message" data-parsley-class-handler="#email-validation-message">
+                                    <small class="text-muted light hidden">Their email is kinda important to us</small>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <label for="phone_number" class="light">Phone number <span id="phone-number-validation-message"></span></label>
+                                    <input type="tel" class="form-control" id="phone-number" placeholder="####-###-###" value="0718751697" data-parsley-trigger="change" data-parsley-required="" data-parsley-required-message="phone number is required" data-parsley-type="number" data-parsley-type-message="should be a valid phone number" data-parsley-minlength="10" data-parsley-minlength-message="should be a valid phone number" data-parsley-errors-container="#phone-number-validation-message" data-parsley-class-handler="#phone-number-validation-message">
+                                    <small class="text-muted light hidden">We need to know their phone number</small>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <label for="address" class="light">Address <span id="address-validation-message"></span></label>
+                                    <input type="address" class="form-control" id="address" placeholder="" value="11 Mirema Ville, Mirema Springs, Mirema Drive off Kamiti Road" data-parsley-trigger="change" data-parsley-required="" data-parsley-required-message="address is required" data-parsley-errors-container="#address-validation-message" data-parsley-class-handler="#address-validation-message">
+                                    <small class="text-muted light hidden">Address lets us know where they live</small>
+                                </fieldset>
+                                <div class="sign-in-button-holder">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block light form-button" id="sign-in-button">Add Supplier</button>
+                                    <i class="fa fa-refresh fa-spin fa-3x hidden icon"></i>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
         <script src="/node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
         <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
         <script src="/node_modules/parsleyjs/dist/parsley.min.js" charset="utf-8"></script>
