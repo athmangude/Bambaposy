@@ -30,8 +30,6 @@ $(document).ready(function() {
             // show progress indicator
             $('div.sign-in-button-holder i').removeClass('hidden');
 
-            console.log('initiating api request');
-
             fetch(API_URL+'signin', {
                 method: 'post',
                 headers: {
@@ -66,14 +64,20 @@ $(document).ready(function() {
 
             var self = $(this);
 
-            var storeName = self.parsley().fields[0].value;
-            var email = self.parsley().fields[1].value;
-            var password = self.parsley().fields[2].value;
+            var userObject = {
+                name: self.parsley().fields[0].value,
+                email: self.parsley().fields[1].value,
+                password: self.parsley().fields[2].value,
+            }
 
-            console.log(storeName, email, password);
+            storage({ userObject: userObject}, function(error) {
+                if (error) {
+                    return console.log(error);
+                }
 
-            $('#create-store-stage-one').addClass('hidden slideOutLeft');
-            $('#create-store-stage-two').addClass('slideInRight').removeClass('hidden');
+                $('#create-store-stage-one').addClass('hidden slideOutLeft');
+                $('#create-store-stage-two').addClass('slideInRight').removeClass('hidden');
+            });
         });
 
     $('form[name="create-store-form-stage-two"]')
@@ -82,8 +86,61 @@ $(document).ready(function() {
 
             var self = $(this);
 
-            // var storeName = self.parsley().fields[0].value;
-            // var email = self.parsley().fields[1].value;
-            // var password = self.parsley().fields[2].value;
+            var userObject = {
+                contact_name: self.parsley().fields[0].value + " " + self.parsley().fields[1].value,
+                phone: self.parsley().fields[2].value,
+                industry_id: self.parsley().fields[3].value
+            }
+
+            storage('userObject', function(error, result) {
+                if (error) {
+                    return console.log('there was an error');
+                }
+
+                var signUpToken = $.extend(result, userObject, {"channel": "NEWSTORE"});
+
+
+                storage({ userObject: signUpToken}, function(error) {
+                    if (error) {
+                        return console.log(error);
+                    }
+
+                    // disable button
+                    $('#sign-in-button').attr('disabled', 'disabled');
+
+                    // show progress indicator
+                    $('div.sign-in-button-holder i').removeClass('hidden');
+
+                    fetch(API_URL+'signup', {
+                        method: 'post',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(signUpToken)
+                    })
+                    .then(function(response) {
+                        return response.json();
+                    }).then(function(responseData) {
+                        // enabled sign in button
+                        $('#sign-in-button').removeAttr('disabled');
+
+                        // hide progress indicator
+                        $('div.sign-in-button-holder i').addClass('hidden');
+                        console.log(responseData);
+
+                        // set loginState
+                        storage({loginState: true}, function(error) {
+                            if (error) {
+                                return console.log('An error occured when setting the login state');
+                            }
+                        });
+                    }).catch(function(error) {
+                        console.log('An error occured', error);
+                    });
+
+                });
+
+            });
         });
 });
