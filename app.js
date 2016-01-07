@@ -3,8 +3,8 @@ $(document).ready(function() {
     var BASE_URL = window.location.protocol+"//"+window.location.host;
     setTimeout(function () {
         $('div.loading-container').addClass('fadeOutUpBig hidden ');
-        $('div.app-container').removeClass('hidden').addClass('fadeIn');
-    }, 2000);
+        $('div.app-container, div.main-container').removeClass('hidden').addClass('fadeIn');
+    }, 0);
 
     $('form input, form select')
         .on('focus', function() {
@@ -19,16 +19,13 @@ $(document).ready(function() {
         .on('submit', function(event) {
             event.preventDefault();
 
-            console.log(event);
-
             var self = $(this);
 
-            self.parsley();
+            var userObject = {
+                email: self.parsley().fields[0].value,
+                password: self.parsley().fields[1].value
+            }
 
-            console.log(self.parsley());
-
-            var email = self.parsley().fields[0].value;
-            var password = self.parsley().fields[1].value;
 
             // disable button
             $('#sign-in-button').attr('disabled', 'disabled');
@@ -36,17 +33,15 @@ $(document).ready(function() {
             // show progress indicator
             $('div.sign-in-button-holder i').removeClass('hidden');
 
+            var loginToken = $.extend(userObject, {channel: "LOGIN"});
+
             fetch(API_URL+'signin', {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    email: email,
-                    password: password,
-                    channel: "LOGIN"
-                })
+                body: JSON.stringify(loginToken)
             })
             .then(function(response) {
                 return response.json();
@@ -56,7 +51,16 @@ $(document).ready(function() {
 
                 // hide progress indicator
                 $('div.sign-in-button-holder i').addClass('hidden');
-                console.log(responseData);
+
+                storage({userObject: userObject}, function(error) {
+                    if (error) {
+                        return console.log('an error occured');
+                    }
+                });
+
+                // redirect to index
+                var redirectUrl = BASE_URL+'/index.html';
+                window.location.assign(redirectUrl);
             }).catch(function(error) {
                 console.log('in error block');
                 console.log(error);
@@ -143,7 +147,6 @@ $(document).ready(function() {
                         });
 
                         var redirectUrl = BASE_URL+'/index.html';
-                        console.log('redirecting to ', redirectUrl, ' ...');
                         window.location.assign(redirectUrl);
                     }).catch(function(error) {
                         console.log('An error occured', error);
@@ -151,6 +154,60 @@ $(document).ready(function() {
 
                 });
 
+            });
+        });
+
+    $('form[name="add-supplier"]')
+        .on('submit', function(event) {
+            event.preventDefault();
+
+            var self = $(this);
+
+            var userObject = {
+                name: self.parsley().fields[0].value + " " + self.parsley().fields[1].value,
+                email: self.parsley().fields[2].value,
+                phone: self.parsley().fields[3].value,
+                address: self.parsley().fields[4].value
+            }
+
+            storage('userObject', function(error, result) {
+                if (error) {
+                    return console.log('an error occured ', error);
+                }
+
+                var userEmail = result.email;
+
+                var supplierToken = $.extend(userObject, {storeId: userEmail});
+
+                console.log('fetching suppliers');
+
+                storage('suppliers', function(error, result) {
+                    if (error) {
+                        return console.log('an error occured', error);
+                    }
+
+                    console.log(result);
+
+                    var suppliers = [];
+
+                    if (result === null) {
+                        // no suppliers exist
+                        suppliers.push(supplierToken);
+                        return storage('suppliers', suppliers, function(error, result) {
+                            if (error) {
+                                return console.log('an errror occured', error);
+                            }
+                        });
+                    }
+
+                    suppliers = result;
+                    suppliers.push(supplierToken);
+                    return storage('suppliers', suppliers, function(error, result) {
+                        if (error) {
+                            return console.log('an errror occured', error);
+                        }
+                    });
+                });
             });
         });
 });
