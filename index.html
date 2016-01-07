@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="stylesheets/custom.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen" charset="utf-8">
+    </head>
+    <body>
+        <div class="container form-container">
+            <!-- col-md-6 sm-6 col-xs-10 col-md-offset-3 col-sm-offset-3 col-xs-offset-1 -->
+            <div class="row col-lg-6 col-md-8 col-sm-10 col-xs-12 form-holder">
+                <img src="/images/bambapos_logo.png" class="logo" alt="logo" />
+                <h2 class="heading">Sign In to BambaPOS</h2>
+                <form>
+                    <fieldset class="form-group">
+                        <label for="email" class="light">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="">
+                        <small class="text-muted light hidden">We'll never share your email with anyone else.</small>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="password" class="light">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="">
+                        <small class="text-muted light hidden">We'll never share your email with anyone else.</small>
+                    </fieldset>
+                    <button type="button" class="btn btn-primary btn-lg btn-block light" id="sign-in-button">Sign In</button>
+                    <div class="eula">
+                        <span>* By clicking the "Create my store" button you agree to our <a href="#">Merchant User License Agreement</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+    </body>
+</html>

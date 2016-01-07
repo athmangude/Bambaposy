@@ -1,0 +1,64 @@
+div.form-container {
+    height: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+div.form-holder {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+}
+
+img.logo {
+    margin-left: auto;
+    margin-right: auto;
+    display: inherit;
+}
+
+h2.heading {
+    text-align: center;
+    font-weight: 200;
+    font: normal normal 300 46px / 51px "Roboto Slab", Helvetica, Arial, Verdana, sans-serif;
+}
+
+.light, button.light {
+    font-weight: 200;
+}
+
+.lighter {
+    font-weight: 100;
+}
+
+button#sign-in-button {
+    background-color: rgb(16, 190, 226);
+    border-color: rgb(16, 190, 226);
+}
+
+div.eula {
+    font-size: 12px;
+    margin-top: 12px;
+    text-align: center;
+}
+
+div.eula span a {
+    display: block;
+}
+
+input.form-control {
+    font-size: 18px;
+    border: 1px solid #dddfe2;
+    padding: 9px 10px 8px;
+    color: #7a7a7a;
+    box-shadow: none;
+    height: 45px;
+}
+
+a {
+    color: #333 !important;
+}
+
+a:hover {
+    text-decoration: underline;
+}
