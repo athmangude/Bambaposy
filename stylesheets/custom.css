@@ -23,6 +23,10 @@ h2.heading {
     font: normal normal 300 46px / 51px "Roboto Slab", Helvetica, Arial, Verdana, sans-serif;
 }
 
+form label {
+    margin-bottom: 0;
+}
+
 .light, button.light {
     font-weight: 200;
 }
@@ -34,6 +38,8 @@ h2.heading {
 button#sign-in-button {
     background-color: rgb(16, 190, 226);
     border-color: rgb(16, 190, 226);
+    height: 60px;
+    margin-top: 30px;
 }
 
 div.eula {
@@ -53,6 +59,7 @@ input.form-control {
     color: #7a7a7a;
     box-shadow: none;
     height: 45px;
+    margin-bottom: 10px;
 }
 
 a {
@@ -61,4 +68,11 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.parsley-error ul {
+    padding: 0;
+    list-style-type: none;
+    display: inline-block;
+    color: red;
 }
