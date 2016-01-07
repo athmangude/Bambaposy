@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var API_URL = 'http://private-anon-f6d541990-bambapos.apiary-mock.com/';
-    $('form[name="sign-in-form"] input')
+    $('form input, form select')
         .on('focus', function() {
             $(this).siblings('small').removeClass('hidden');
         })
@@ -53,10 +53,6 @@ $(document).ready(function() {
                 // hide progress indicator
                 $('div.sign-in-button-holder i').addClass('hidden');
                 console.log(responseData);
-
-                // $('form[name="create-store-form-stage-one"]').addClass('hidden');
-                // $('form[name="create-store-form-stage-two"]').addClass('hidden fadeIn');
-
             }).catch(function(error) {
                 console.log('in error block');
                 console.log(error);
@@ -75,5 +71,19 @@ $(document).ready(function() {
             var password = self.parsley().fields[2].value;
 
             console.log(storeName, email, password);
+
+            $('#create-store-stage-one').addClass('hidden slideOutLeft');
+            $('#create-store-stage-two').addClass('slideInRight').removeClass('hidden');
+        });
+
+    $('form[name="create-store-form-stage-two"]')
+        .on('submit', function(event) {
+            event.preventDefault();
+
+            var self = $(this);
+
+            // var storeName = self.parsley().fields[0].value;
+            // var email = self.parsley().fields[1].value;
+            // var password = self.parsley().fields[2].value;
         });
 });
