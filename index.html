@@ -12,18 +12,18 @@
             <div class="row col-lg-6 col-md-8 col-sm-10 col-xs-12 form-holder">
                 <img src="/images/bambapos_logo.png" class="logo" alt="logo" />
                 <h2 class="heading">Sign In to BambaPOS</h2>
-                <form name="sign-in-form">
+                <form name="sign-in-form" data-parsley-validate="">
                     <fieldset class="form-group">
-                        <label for="email" class="light">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="">
-                        <small class="text-muted light hidden">We'll never share your email with anyone else.</small>
+                        <label for="email" class="light">Email <span id="email-validation-message"></span></label>
+                        <input type="email" class="form-control" id="email" placeholder="" data-parsley-trigger="change" data-parsley-required="" data-parsley-required-message="email is required" data-parsley-type="email" data-parsley-type-message="should be a valid email" data-parsley-errors-container="#email-validation-message" data-parsley-class-handler="#email-validation-message">
+                        <small class="text-muted light hidden">Your email uniquely identifies you</small>
                     </fieldset>
                     <fieldset class="form-group">
-                        <label for="password" class="light">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="">
-                        <small class="text-muted light hidden">We'll never share your email with anyone else.</small>
+                        <label for="password" class="light">Password <span id="password-validation-message"></span></label>
+                        <input type="password" class="form-control" id="password" placeholder="" data-parsley-trigger="change" data-parsley-required="" data-parsley-required-message="password is required" data-parsley-minlength="8" data-parsley-minlength-message="8 characters minimum" data-parsley-errors-container="#password-validation-message" data-parsley-class-handler="#password-validation-message">
+                        <small class="text-muted light hidden">Your password must be at least 8 characters</small>
                     </fieldset>
-                    <button type="button" class="btn btn-primary btn-lg btn-block light" id="sign-in-button">Sign In</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block light" id="sign-in-button">Sign In</button>
                     <div class="eula">
                         <span>* By clicking the "Create my store" button you agree to our <a href="#">Merchant User License Agreement</a></span>
                     </div>
@@ -32,6 +32,7 @@
         </div>
         <script src="/node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
         <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+        <script src="/node_modules/parsleyjs/dist/parsley.min.js" charset="utf-8"></script>
         <script src="app.js" charset="utf-8"></script>
     </body>
 </html>
