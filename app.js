@@ -14,8 +14,9 @@ $(document).ready(function() {
             if (result) {
                 return routeTo('/index.html');
             } else {
+                console.log(window.location);
                 console.log('result', result);
-                if (window.location.pathname.indexOf('/index.html') > -1) {
+                if (window.location.pathname === '/' || window.location.pathname.indexOf('/index.html') > -1) {
                     return routeTo('/signin.html');
                 }
 
