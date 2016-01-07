@@ -70,7 +70,7 @@
                             <label for="password" class="light">What type of business do you own? <span id="business-type-validation-message"></span></label>
                             <select id="business-type" name="business_type" class="form-control" data-parsley-required="" data-parsley-required-message="business type is required" data-parsley-errors-container="#business-type-validation-message" data-parsley-class-handler="#business-type-validation-message">
                                 <option value="">Please select</option>
-                                <option value="1">Retail</option>
+                                <option value="1" selected>Retail</option>
                                 <option value="2">Restaurant/ Bar</option>
                                 <option value="3">Quick-Serve</option>
                             </select>
@@ -92,6 +92,7 @@
         <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
         <script src="/node_modules/parsleyjs/dist/parsley.min.js" charset="utf-8"></script>
         <script src="/node_modules/whatwg-fetch/fetch.js" charset="utf-8"></script>
+        <script src="/node_modules/asyncstorage/dist/storage.js" charset="utf-8"></script>
         <script src="app.js" charset="utf-8"></script>
     </body>
 </html>
