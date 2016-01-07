@@ -35,12 +35,24 @@ form label {
     font-weight: 100;
 }
 
-button#sign-in-button {
+button.form-button {
     background-color: rgb(16, 190, 226);
     border-color: rgb(16, 190, 226);
     height: 60px;
     margin-top: 30px;
 }
+
+button.form-button:hover {
+    background-color: #27cff3;
+    border-color: #27cff3;
+}
+
+button.form-button, button.form-button:disabled, button.form-button:active, button.form-button:focus, button.form-button[disabled]{
+    background-color: #27cff3;
+    border-color: #27cff3;
+}
+
+
 
 div.eula {
     font-size: 12px;
@@ -52,7 +64,7 @@ div.eula span a {
     display: block;
 }
 
-input.form-control {
+input.form-control, select.form-control {
     font-size: 18px;
     border: 1px solid #dddfe2;
     padding: 9px 10px 8px;
