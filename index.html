@@ -5,6 +5,7 @@
         <title></title>
         <link rel="stylesheet" href="stylesheets/custom.css" media="screen" charset="utf-8">
         <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css" media="screen" charset="utf-8">
     </head>
     <body>
         <div class="container form-container">
@@ -15,15 +16,18 @@
                 <form name="sign-in-form" data-parsley-validate="">
                     <fieldset class="form-group">
                         <label for="email" class="light">Email <span id="email-validation-message"></span></label>
-                        <input type="email" class="form-control" id="email" placeholder="" data-parsley-trigger="change" data-parsley-required="" data-parsley-required-message="email is required" data-parsley-type="email" data-parsley-type-message="should be a valid email" data-parsley-errors-container="#email-validation-message" data-parsley-class-handler="#email-validation-message">
+                        <input type="email" class="form-control" id="email" placeholder="" value="johnsam@gmail.com" data-parsley-trigger="change" data-parsley-required="" data-parsley-required-message="email is required" data-parsley-type="email" data-parsley-type-message="should be a valid email" data-parsley-errors-container="#email-validation-message" data-parsley-class-handler="#email-validation-message">
                         <small class="text-muted light hidden">Your email uniquely identifies you</small>
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="password" class="light">Password <span id="password-validation-message"></span></label>
-                        <input type="password" class="form-control" id="password" placeholder="" data-parsley-trigger="change" data-parsley-required="" data-parsley-required-message="password is required" data-parsley-minlength="8" data-parsley-minlength-message="8 characters minimum" data-parsley-errors-container="#password-validation-message" data-parsley-class-handler="#password-validation-message">
+                        <input type="password" class="form-control" id="password" placeholder="" value="jk7w6gwevwvrnw4b3" data-parsley-trigger="change" data-parsley-required="" data-parsley-required-message="password is required" data-parsley-minlength="8" data-parsley-minlength-message="8 characters minimum" data-parsley-errors-container="#password-validation-message" data-parsley-class-handler="#password-validation-message">
                         <small class="text-muted light hidden">Your password must be at least 8 characters</small>
                     </fieldset>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block light" id="sign-in-button">Sign In</button>
+                    <div class="sign-in-button-holder">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block light" id="sign-in-button">Sign In</button>
+                        <i class="fa fa-refresh fa-spin fa-3x hidden icon"></i>
+                    </div>
                     <div class="eula">
                         <span>* By clicking the "Create my store" button you agree to our <a href="#">Merchant User License Agreement</a></span>
                     </div>
