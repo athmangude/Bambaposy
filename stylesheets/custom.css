@@ -18,6 +18,7 @@ img.logo {
 }
 
 h2.heading {
+    margin-top: 50px;
     text-align: center;
     font-weight: 200;
     font: normal normal 300 46px / 51px "Roboto Slab", Helvetica, Arial, Verdana, sans-serif;
@@ -99,4 +100,17 @@ div.sign-in-button-holder {
     position: absolute;
     top: 10px;
     left: 46%;
+}
+
+#stage-two-header {
+    height: 50px;
+    max-width: 100%;
+    display: block;
+    margin-bottom: 60px;
+    margin: 5px auto 10px;
+    width: calc(762px / 2);
+    height: calc(87px / 2);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url(https://www.shopkeep.com/wp-content/themes/dt-the7-child/images/signup-breadcrumbs@2x.jpg);
 }
