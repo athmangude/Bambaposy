@@ -76,3 +76,15 @@ a:hover {
     display: inline-block;
     color: red;
 }
+
+div.sign-in-button-holder {
+    position: relative;
+}
+
+.icon {
+    color: black;
+    text-align: center;
+    position: absolute;
+    top: 10px;
+    left: 46%;
+}
