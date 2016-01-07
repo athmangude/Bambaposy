@@ -1,10 +1,34 @@
+var API_URL = 'http://private-anon-f6d541990-bambapos.apiary-mock.com/';
+var BASE_URL = window.location.protocol+"//"+window.location.host;
+
 $(document).ready(function() {
-    var API_URL = 'http://private-anon-f6d541990-bambapos.apiary-mock.com/';
-    var BASE_URL = window.location.protocol+"//"+window.location.host;
+
     setTimeout(function () {
-        $('div.loading-container').addClass('fadeOutUpBig hidden ');
-        $('div.app-container, div.main-container').removeClass('hidden').addClass('fadeIn');
-    }, 0);
+        storage('loginState', function(error, result) {
+            if (error) {
+                return console.error('an error occured', error);
+            }
+
+            var pathName = window.location.pathname;
+
+            if (result) {
+                return routeTo('/index.html');
+            } else {
+                console.log('result', result);
+                if (window.location.pathname.indexOf('/index.html') > -1) {
+                    return routeTo('/signin.html');
+                }
+
+                return routeTo(window.location.pathname);
+            }
+        });
+    }, 1000);
+
+    var pathName = window.location.pathname;
+
+    if (pathName.indexOf('/index.html') > -1) {
+        populateTable();
+    }
 
     $('form input, form select')
         .on('focus', function() {
@@ -56,6 +80,14 @@ $(document).ready(function() {
                     if (error) {
                         return console.log('an error occured');
                     }
+
+                    // set loginState
+                    storage({loginState: true}, function(error) {
+                        if (error) {
+                            return console.log('An error occured when setting the login state');
+                        }
+                    });
+
                 });
 
                 // redirect to index
@@ -179,14 +211,10 @@ $(document).ready(function() {
 
                 var supplierToken = $.extend(userObject, {storeId: userEmail});
 
-                console.log('fetching suppliers');
-
                 storage('suppliers', function(error, result) {
                     if (error) {
                         return console.log('an error occured', error);
                     }
-
-                    console.log(result);
 
                     var suppliers = [];
 
@@ -197,6 +225,7 @@ $(document).ready(function() {
                             if (error) {
                                 return console.log('an errror occured', error);
                             }
+                            populateTable();
                         });
                     }
 
@@ -206,8 +235,44 @@ $(document).ready(function() {
                         if (error) {
                             return console.log('an errror occured', error);
                         }
+
+                        populateTable();
                     });
                 });
             });
         });
 });
+
+function populateTable() {
+    // fetch suppliers
+    storage('suppliers', function(error, result) {
+        if (error) {
+            return console.error('an error occured', error);;
+        }
+
+        if (result.length) {
+            $('table[name="suppliers"]').removeClass('hidden');
+        }
+
+        // clear the table
+        $('table[name="suppliers"] tbody').html('');
+
+        $.each(result, function(key, value) {
+            // append rows to table
+            $('table[name="suppliers"]')
+                .append('<tr><th scope="row">'+(key+1)+'</th><td>'+value.name+'</td><td>'+value.email+'</td><td>'+value.phone+'</td><td>'+value.address+'</td></tr>')
+        });
+    });
+}
+
+function routeTo(path) {
+    var pathName = window.location.pathname;
+
+    if (pathName.indexOf(path) === -1) {
+        var redirectUrl = BASE_URL+path;
+        return window.location.assign(redirectUrl);
+    }
+
+    $('div.loading-container').addClass('fadeOutUpBig hidden ');
+    $('div.app-container, div.main-container').removeClass('hidden').addClass('fadeIn');
+}
