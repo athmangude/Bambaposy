@@ -10,3 +10,13 @@ If you have Node.js installed:
 `$ npm install -g live-server`
 
 `$ live-server`
+
+
+#### Pages
+
+`/`
+
+`/signin.html`
+
+`/signup.html`
+
