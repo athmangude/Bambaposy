@@ -12,11 +12,11 @@ $(document).ready(function() {
             var pathName = window.location.pathname;
 
             if (result) {
-                return routeTo('/index.html');
+                return routeTo('/home.html');
             } else {
                 console.log(window.location);
                 console.log('result', result);
-                if (window.location.pathname === '/' || window.location.pathname.indexOf('/index.html') > -1) {
+                if (window.location.pathname === '/' || window.location.pathname.indexOf('/home.html') > -1) {
                     return routeTo('/signin.html');
                 }
 
@@ -27,7 +27,7 @@ $(document).ready(function() {
 
     var pathName = window.location.pathname;
 
-    if (pathName.indexOf('/index.html') > -1) {
+    if (pathName.indexOf('/home.html') > -1) {
         populateTable();
     }
 
@@ -92,7 +92,7 @@ $(document).ready(function() {
                 });
 
                 // redirect to index
-                var redirectUrl = BASE_URL+'/index.html';
+                var redirectUrl = BASE_URL+'/home.html';
                 window.location.assign(redirectUrl);
             }).catch(function(error) {
                 console.log('in error block');
@@ -179,7 +179,7 @@ $(document).ready(function() {
                             }
                         });
 
-                        var redirectUrl = BASE_URL+'/index.html';
+                        var redirectUrl = BASE_URL+'/home.html';
                         window.location.assign(redirectUrl);
                     }).catch(function(error) {
                         console.log('An error occured', error);
