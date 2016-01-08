@@ -3,22 +3,21 @@ BambaPOS API Client
 
 #### Running on local machine
 
-Put it on a local server if you have preferences.
+1. Clone the repo
+2. Put it on a local server if you have preferences.
+
+##### Alternatively
 
 If you have Node.js installed: 
 
-`$ npm install -g live-server`
-
-`$ live-server`
-
-
+2. `$ cd` into the directory
+3. `$ npm install -g live-server`
+4. `$ live-server`
 
 
 #### Pages
 
-`/`
-
-`/signin.html`
-
-`/signup.html`
+- `/`
+- `/signin.html`
+- `/signup.html`
 
